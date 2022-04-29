@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     FloatingActionButton weightBtnDec, ageBtnDec;
 
     int weightCounter = 55;
-    int ageCounter = 20;
+    int ageCounter = 21;
     int currentProgress;
 
     String heightCounter="170";
