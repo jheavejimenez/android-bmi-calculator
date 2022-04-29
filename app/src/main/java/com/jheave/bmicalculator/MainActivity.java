@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.NumberPicker;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,17 +19,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     CardView weightCardView;
     CardView ageCardView;
     TextView weightCounterText, ageCounterText, height_title_text;
+    SeekBar seekbar_height;
     FloatingActionButton weightBtnInc, ageBtnInc;
     FloatingActionButton weightBtnDec, ageBtnDec;
 
     int weightCounter = 50;
     int ageCounter = 25;
+    int currentProgress;
+
+    String heightCounter="170";
     String countWeight, countAge;
-    NumberPicker feetPicker, inchPicker;
-    int feetValue = 5 , inchValue = 4;
     Button calculateBtn;
-    String heightValue;
     DecimalFormat decimalFormat;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         weightBtnDec = findViewById(R.id.weight_btn_dec);
         ageBtnInc = findViewById(R.id.age_btn_inc);
         ageBtnDec = findViewById(R.id.age_btn_dec);
-        feetPicker = findViewById(R.id.feet_picker);
-        inchPicker = findViewById(R.id.inch_picker);
+        seekbar_height = findViewById(R.id.seekbar_height);
         height_title_text = findViewById(R.id.current_height);
         calculateBtn = findViewById(R.id.calculate_btn);
         counterInit();
@@ -55,15 +56,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ageBtnInc.setOnClickListener(this);
         ageBtnDec.setOnClickListener(this);
 
-        feetPicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
-            feetValue = newVal;
-            heightValueIs();
+        seekbar_height.setMax(300);
+        seekbar_height.setProgress(170);
+        seekbar_height.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
-        });
+                currentProgress=progress;
+                heightCounter=String.valueOf(currentProgress);
+                height_title_text.setText(heightCounter);
 
-        inchPicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
-            inchValue = newVal;
-            heightValueIs();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
         });
         calculateBtn.setOnClickListener(v -> calculateBmi());
     }
@@ -108,29 +121,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         weightCounterText.setText(countWeight);
         countAge = Integer.toString(ageCounter);
         ageCounterText.setText(countAge);
-        feetPicker.setMinValue(1);
-        feetPicker.setMaxValue(8);
-        inchPicker.setMinValue(0);
-        inchPicker.setMaxValue(11);
-        feetPicker.setValue(5);
-        inchPicker.setValue(4);
-        heightValueIs();
+
     }
-    public void heightValueIs()
-    {
-        if(inchValue == 0){
-            heightValue = feetValue + " feet ";
-            height_title_text.setText(heightValue);
-        }
-        else
-        heightValue = feetValue + " feet " + inchValue +" inches";
-        height_title_text.setText(heightValue);
-    }
+
     public void calculateBmi(){
-        double heightInInches = feetValue * 12 + inchValue;
-        double heightInMetres = heightInInches / 39.37;
-        double heightInMetreSq = heightInMetres * heightInMetres;
-        double bmi = weightCounter / heightInMetreSq;
+        double height = Double.parseDouble(heightCounter);
+        double heightInMeters = height/100;
+        double heightInMetersSquared = Math.pow(heightInMeters,2);
+        double bmi = weightCounter / heightInMetersSquared;
+
         String bmiValue = decimalFormat.format(bmi);
         Intent intent = new Intent(this,BmiActivity.class);
         intent.putExtra("bmiVal",bmiValue);
