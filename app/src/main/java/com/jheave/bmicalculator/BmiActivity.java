@@ -18,42 +18,12 @@ public class BmiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bmi);
         bmiValue = findViewById(R.id.bmi_value);
         bmiCategory = findViewById(R.id.bmi_category);
-        bmiTips = findViewById(R.id.bmi_tips);
         bmiTipsArray = getResources().getStringArray(R.array.tips_array);
         calculateAgainBtn = findViewById(R.id.calculate_again_btn);
         bmiValOutput = getIntent().getStringExtra("bmiVal");
         bmiValue.setText(bmiValOutput);
         findCategory();
-        categoryTips();
         calculateAgainBtn.setOnClickListener(v -> onBackPressed());
-
-    }
-
-    private void categoryTips() {
-        double result = Double.parseDouble(bmiValOutput);
-        if(result < 15){
-           bmiTips.setText(bmiTipsArray[0]);
-        }
-        else if(result >= 15 && result <= 16){
-            bmiTips.setText(bmiTipsArray[0]);
-        }
-        else if(result >= 16 && result <= 18.5){
-            bmiTips.setText(bmiTipsArray[1]);
-        }
-        else if(result >= 18.5 && result <= 25){
-            bmiTips.setText(bmiTipsArray[2]);
-        }
-        else if(result >= 25 && result <= 30){
-            bmiTips.setText(bmiTipsArray[3]);
-        }
-        else if(result >=30 && result <= 35){
-            bmiTips.setText(bmiTipsArray[4]);
-        }
-        else if(result >= 35 && result <= 50){
-            bmiTips.setText(bmiTipsArray[4]);
-        }
-        else
-            bmiTips.setText(bmiTipsArray[4]);
 
     }
 
@@ -72,7 +42,7 @@ public class BmiActivity extends AppCompatActivity {
             bmiCategory.setText(category);
         }
         else if(result >= 18.5 && result <= 25){
-            category = "Normal (Healthy weight)";
+            category = "Normal";
             bmiCategory.setText(category);
         }
         else if(result >= 25 && result <= 30){
