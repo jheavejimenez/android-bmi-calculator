@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView weightCounterText, ageCounterText, height_title_text;
     FloatingActionButton weightBtnInc, ageBtnInc;
     FloatingActionButton weightBtnDec, ageBtnDec;
+
     int weightCounter = 50;
     int ageCounter = 25;
     String countWeight, countAge;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ageBtnDec = findViewById(R.id.age_btn_dec);
         feetPicker = findViewById(R.id.feet_picker);
         inchPicker = findViewById(R.id.inch_picker);
-        height_title_text = findViewById(R.id.height_title_text);
+        height_title_text = findViewById(R.id.current_height);
         calculateBtn = findViewById(R.id.calculate_btn);
         counterInit();
         decimalFormat = new DecimalFormat(".#");

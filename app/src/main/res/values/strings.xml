@@ -5,15 +5,14 @@
     <string name="age_counter_txt">25</string>
     <string name="weight_title_txt">Weight (kg)</string>
     <string name="age_title_txt">Age</string>
-    <string name="height_title_txt">5 feet 4 inches </string>
+    <string name="starting_height">170</string>
     <string name="button_text">Calculate</string>
     <string name="button2_text">Calculate Again</string>
-    <string name="ft">ft</string>
-    <string name="in">in</string>
     <string name="height">Height</string>
     <string name="YourBmiText">Your BMI</string>
     <string name="bmiValue">20.5</string>
     <string name="bmiTips">You are underweight So you may need to put on some weight.</string>
+    <string name="unit">Cm</string>
     <string-array name="tips_array">
         <item>You are severely underweight. It is a sign that you\'re not eating enough or you may be ill.</item>
         <item>You are underweight So you may need to put on some weight. </item>
