@@ -53,28 +53,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ageBtnInc.setOnClickListener(this);
         ageBtnDec.setOnClickListener(this);
 
-        feetPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                feetValue = newVal;
-                heightValueIs();
+        feetPicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
+            feetValue = newVal;
+            heightValueIs();
 
-            }
         });
 
-        inchPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                inchValue = newVal;
-                heightValueIs();
-            }
+        inchPicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
+            inchValue = newVal;
+            heightValueIs();
         });
-        calculateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                calculateBmi();
-            }
-        });
+        calculateBtn.setOnClickListener(v -> calculateBmi());
     }
 
     @Override
@@ -82,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId())
         {
             case R.id.weight_cardView:
+            case R.id.age_cardView:
                 break;
             case R.id.weight_btn_inc:
                 if(weightCounter < 700)
@@ -95,8 +85,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 countWeight = Integer.toString(weightCounter);
                 weightCounterText.setText(countWeight);
                 break;
-            case R.id.age_cardView:
-               break;
             case R.id.age_btn_inc:
                 if(ageCounter < 150)
                     ageCounter++;

@@ -1,7 +1,6 @@
 package com.jheave.bmicalculator;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -26,12 +25,7 @@ public class BmiActivity extends AppCompatActivity {
         bmiValue.setText(bmiValOutput);
         findCategory();
         categoryTips();
-        calculateAgainBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        calculateAgainBtn.setOnClickListener(v -> onBackPressed());
 
     }
 

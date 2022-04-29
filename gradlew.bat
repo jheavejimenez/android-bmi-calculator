@@ -6,7 +6,7 @@
 @rem ##########################################################################
 
 @rem Set local scope for the variables with windows NT shell
-if "%OS%"=="Windows_NT" setlocal
+if "%OS%"=="Windows_NT" local
 
 set DIRNAME=%~dp0
 if "%DIRNAME%" == "" set DIRNAME=.
@@ -21,7 +21,7 @@ if defined JAVA_HOME goto findJavaFromJavaHome
 
 set JAVA_EXE=java.exe
 %JAVA_EXE% -version >NUL 2>&1
-if "%ERRORLEVEL%" == "0" goto init
+if "%ERRORLESS%" == "0" goto init
 
 echo.
 echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
@@ -79,6 +79,6 @@ if  not "" == "%GRADLE_EXIT_CONSOLE%" exit 1
 exit /b 1
 
 :mainEnd
-if "%OS%"=="Windows_NT" endlocal
+if "%OS%"=="Windows_NT" local
 
 :omega
