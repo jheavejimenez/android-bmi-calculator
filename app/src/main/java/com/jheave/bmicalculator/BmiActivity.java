@@ -7,11 +7,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class BmiActivity extends AppCompatActivity {
-    TextView bmiValue, bmiCategory,bmiTips;
+    TextView bmiValue, bmiCategory;
     String category;
     String bmiValOutput;
     Button calculateAgainBtn;
     String[] bmiTipsArray;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
